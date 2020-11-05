@@ -1,0 +1,55 @@
+
+Docerfile - image
+	FROM openjdk:11 (подключаем jdk)
+	ARG JAR_FILE=target/*.jar 
+	ADD ${JAR_FILE} app.jar 
+	ENTRYPOINT ["java", "-jar", "/app.jar"]
+	
+	Edit Docerfile -> image tag : springbootapp
+	
+	
+	docker-compose.yml - управление
+postgres: - контейнер 
+    image: postgres:latest
+    container_name: postgres
+    volumes:
+      - ./postgres-data:/var/lib/postgresql/data (том комп:откуда)
+    ports:
+      - 5431:5432 (комп:контейнер)
+    environment: - переменные контейнера
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=testdb
+      
+   springbootapp:
+    image: springbootapp:latest
+    container_name: springbootapp
+    ports:
+      - 8082:8080
+    depends_on: - подключаем зависимость (в данном случае postgres)
+      - postgres 
+    environment:
+      - DB_ADDRESS=postgres:5432     (имя контейнера:порт контейнера, можно порт компа: внешний порт)
+      
+   idea Service docker
+      image -> delete springbootapp
+      
+      
+      
+      spring.datasource.url=jdbc:postgresql://${DB_ADDRESS}/testdb
+            передаем переменную из  docker-compose.yml
+      
+      docker-compose up
+      
+      
+      
+      
+      docker ps -запущенные image
+      docker ps -a - были запущены
+      
+      docker rm id - удаляем контейнер
+      docker stop container_name - останавливаем контейнер
+      
+      docker exec -it container_name bash - запуск
+      
+     docker build --tag springbootapp:latest .  билдим image  springbootapp

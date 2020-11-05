@@ -1,0 +1,6 @@
+ALTER TABLE supply
+   DROP CONSTRAINT FK_supply_supplier_id
+GO
+
+DROP TABLE IF EXISTS supply CASCADE;
+GO

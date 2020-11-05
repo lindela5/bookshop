@@ -1,0 +1,23 @@
+version: "3"
+services:
+  postgres:
+    image: postgres:latest
+    container_name: postgreslt
+    volumes:
+      - ./postgres-data:/var/lib/postgresql/data
+    ports:
+      - 5431:5432
+    environment:
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=bookshop
+  # APP*****************************************
+  springbootapp:
+    image: springbootapp:latest
+    container_name: springbootapp
+    ports:
+      - 8082:8080
+    depends_on:
+      - postgres
+    environment:
+      - DB_ADDRESS=postgres:5432
