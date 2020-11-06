@@ -58,24 +58,24 @@ public class BookController {
         log.info("Handling find all users request");
         return bookService.getAllBooks();
     }
-//
-//    @GetMapping("/getbyid/{id}")
+
+    @GetMapping("/getbyid/{id}")
+    public BookDTO getBookById(@PathVariable long id) {
+        log.info("Handling find by id request: " + id);
+        return bookService.getBookById(id);
+    }
+
+
+//    @GetMapping("/getbyid")
 //    public BookDTO getBookById(@PathVariable long id) {
 //        log.info("Handling find by id request: " + id);
 //        return bookService.getBookById(id);
 //    }
 
 
-    @GetMapping("/getbyid")
-    public BookDTO getBookById(@RequestParam long id) {
-        log.info("Handling find by id request: " + id);
-        return bookService.getBookById(id);
-    }
-
-
     //найти всех авторов, которые издавались в этот год
     @GetMapping("/getauthorbyyear/{year}")
-    public Set<AuthorDTO> getAuthorByYear(@RequestParam String year) {
+    public Set<AuthorDTO> getAuthorByYear(@PathVariable String year) {
         return bookService.getAuthorByYear(year);
     }
 
@@ -89,7 +89,7 @@ public class BookController {
     }
 
     //в каких секциях лежат книги
-    @GetMapping("/getbysection/")
+    @GetMapping("/getbysection/{section}")
     public List<BookDTO> getBySection(@PathVariable long section){
         return bookService.getBySection(section);
     }
