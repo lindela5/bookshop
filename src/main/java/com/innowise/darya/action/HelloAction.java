@@ -7,17 +7,23 @@ import org.apache.struts2.convention.annotation.Namespace;
 import org.apache.struts2.convention.annotation.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 
-@Namespace("/")
-@Action(value="hello")
-@Result(name = "success", location = "pages/hello.jsp")
+//@Namespace("/bookshop")
+//@Action(value = "hello", //
+//        results = { //
+//                @Result(name = "success", location = "/pages/hello.jsp")
+//        } //
+//)
+//@Action(value="hello")
+//@Result(name = "success", location = "/WEB-INF/pages/hello.jsp")
 public class HelloAction extends ActionSupport {
 
     @Autowired
     private BookService bookService;
 
-//    public String execute() throws Exception {
-//        return SUCCESS;
-//    }
+@Override
+    public String execute() throws Exception {
+        return SUCCESS;
+    }
 
 
 }

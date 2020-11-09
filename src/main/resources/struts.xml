@@ -8,22 +8,35 @@
 
     <constant value="true" name="struts.devMode"/>
 
-    <!-- <constant name="struts.convention.package.locators.basePackage" value="com.innowise.darya.action"/>-->
+<!--     <constant name="struts.convention.package.locators.basePackage" value="com.innowise.darya.action"/>-->
 
 
-    <!-- <package name="basicStruts2" extends="struts-default">-->
+<!--     <package name="basicStruts2" extends="struts-default">-->
 
 
-    <!-- <action name="hello" class="com.innowise.darya.action.HelloAction" method="execute">-->
+<!--     <action name="hello" class="com.innowise.darya.action.HelloAction" method="execute">-->
+    <package name="default" namespace="/" extends="struts-default">
+
+        <action name="hello"
+                class="HelloAction" >
+            <result name="success">pages/hello.jsp</result>
+        </action>
+
+<!--        <action name="userSpringAction"-->
+<!--                class="com.mkyong.user.action.UserSpringAction" >-->
+<!--            <result name="success">pages/user.jsp</result>-->
+<!--        </action>-->
 
 
-    <!-- <result name="success">/hello.jsp</result>-->
+    </package>
+
+<!--     <result name="success">/pages/hello.jsp</result>-->
 
 
-    <!-- </action>-->
+<!--     </action>-->
 
 
-    <!-- </package>-->
+<!--     </package>-->
 
 
 </struts>
